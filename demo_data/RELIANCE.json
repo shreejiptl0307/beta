@@ -1,0 +1,62 @@
+{
+  "symbol": "RELIANCE.NS",
+  "name": "Reliance Industries Ltd",
+  "cap_segment": "Large Cap",
+  "sector": "Energy & Retail",
+  "price": {
+    "live": 2980.20,
+    "day_open": 2970.00,
+    "day_high": 2995.00,
+    "day_low": 2962.00,
+    "prev_close": 2965.50,
+    "day_change_pct": 0.50,
+    "volume": 4200000
+  },
+  "range_52w": {
+    "high": 3217.90,
+    "low": 2220.30,
+    "pct_from_high": -7.39,
+    "position_pct": 76.17
+  },
+  "technicals": {
+    "rvol": 1.05,
+    "price_vs_sma_pct": 1.12,
+    "window_return_pct": 2.80,
+    "swing_high": 3020.00,
+    "swing_low": 2910.00,
+    "day_range_position_pct": 55.15,
+    "trend": "sideways"
+  },
+  "analyst": {
+    "consensus": "Buy",
+    "num_analysts": 34,
+    "buy_pct": 73.5,
+    "hold_pct": 20.6,
+    "sell_pct": 5.9,
+    "target_mean": 3250.00,
+    "target_low": 2800.00,
+    "target_high": 3500.00,
+    "upside_pct": 9.05
+  },
+  "news": {
+    "total": 4,
+    "positive": 2,
+    "negative": 0,
+    "neutral": 2,
+    "recent": [
+      {
+        "title": "Reliance Retail broadens supply chain footprint across Tier-2 cities",
+        "publisher": "Business Standard",
+        "date": "2026-09-19",
+        "sentiment": "positive"
+      },
+      {
+        "title": "Refining margins steady amidst stable global crude dynamics",
+        "publisher": "CNBC-TV18",
+        "date": "2026-09-17",
+        "sentiment": "neutral"
+      }
+    ]
+  },
+  "data_gaps": []
+}

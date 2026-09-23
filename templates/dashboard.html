@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ brand }} · Indian Stock Agent Dashboard</title>
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --border-subtle: #F1F5F9;
+      --primary: #2563EB;
+      --primary-hover: #1D4ED8;
+      --primary-light: #EFF6FF;
+      --success: #16A34A;
+      --success-light: #F0FDF4;
+      --success-border: #DCFCE7;
+      --warning: #D97706;
+      --warning-light: #FFFBEB;
+      --danger: #DC2626;
+      --danger-light: #FEF2F2;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #2563EB, #4F46E5);
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .select-input {
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary {
+      padding: 10px 22px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* KPI Row */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Section Title */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Table Toolbar */
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover {
+      border-color: #CBD5E1;
+      color: var(--text-main);
+    }
+
+    .filter-btn.active {
+      background: var(--text-main);
+      color: white;
+      border-color: var(--text-main);
+    }
+
+    .filter-btn.active-buy {
+      background: #16A34A !important;
+      color: white !important;
+      border-color: #16A34A !important;
+    }
+
+    .search-input {
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text-main);
+      outline: none;
+      width: 160px;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    /* Agents Panel Grid */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .agent-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 168px;
+      transition: border-color 0.2s;
+    }
+
+    .agent-card.working {
+      border-color: #93C5FD;
+      box-shadow: 0 0 0 1px #BFDBFE;
+    }
+
+    .agent-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .agent-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .agent-icon {
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+      background: var(--border-subtle);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .agent-name {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .status-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: capitalize;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-pill.offline {
+      background: #F1F5F9;
+      color: #64748B;
+    }
+
+    .status-pill.working {
+      background: #EFF6FF;
+      color: #1D4ED8;
+    }
+
+    .status-pill.done {
+      background: #F0FDF4;
+      color: #15803D;
+    }
+
+    .pulsing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2563EB;
+      animation: pulse 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0.5; }
+    }
+
+    .agent-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .agent-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      gap: 8px;
+    }
+
+    .agent-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .agent-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .agent-stat-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .agent-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3B82F6, #60A5FA);
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .agent-card.working .agent-progress-bar {
+      width: 100%;
+      animation: progress-indeterminate 1.5s infinite linear;
+    }
+
+    @keyframes progress-indeterminate {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    /* Verdicts Feed */
+    .verdicts-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background: #FAFAFA;
+      padding: 12px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 13px;
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .stock-cell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stock-symbol {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .stock-name {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-buy {
+      background: #DCFCE7;
+      color: #15803D;
+      border: 1px solid #BBF7D0;
+    }
+
+    .badge-watch {
+      background: #FEF3C7;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+    }
+
+    .badge-avoid {
+      background: #FEE2E2;
+      color: #B91C1C;
+      border: 1px solid #FECACA;
+    }
+
+    .confidence-tag {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .price-tag {
+      font-weight: 600;
+    }
+
+    .change-pos {
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .change-neg {
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .why-text {
+      max-width: 440px;
+      line-height: 1.4;
+      color: #334155;
+    }
+
+    .empty-verdicts {
+      padding: 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .engine-pill {
+      background: #F1F5F9;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    @media (max-width: 1024px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .agents-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      .agents-grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .controls { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand-title">
+        <div class="brand-logo">₹</div>
+        <div class="brand-text">
+          <h1 id="brand-header">{{ brand }} · Indian stock analysis · 8 agents on duty</h1>
+          <p>Multi-agent equity panel analyzing full NSE universe with direct Telegram BUY routing</p>
+        </div>
+      </div>
+      <div class="controls">
+        <select id="mode-select" class="select-input">
+          <option value="live">Live Mode (Full NSE Universe)</option>
+          <option value="demo">Demo Mode (Offline Evidence)</option>
+        </select>
+        <button id="start-btn" class="btn-primary" onclick="startRun()">
+          <span id="btn-icon">⚡</span>
+          <span id="btn-text">Start agents</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Top KPI Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Universe</div>
+        <div class="kpi-value" id="kpi-universe">0</div>
+        <div class="kpi-sub">Total stocks scanned</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">In Debate</div>
+        <div class="kpi-value" id="kpi-debate">0</div>
+        <div class="kpi-sub">All stocks undergoing analysis</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Buy Signals</div>
+        <div class="kpi-value" id="kpi-buys" style="color: var(--success);">0</div>
+        <div class="kpi-sub">Sent to your Telegram</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Top Pick</div>
+        <div class="kpi-value" id="kpi-top-pick" style="font-size: 20px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">—</div>
+        <div class="kpi-sub" id="kpi-top-conf">Highest conviction verdict</div>
+      </div>
+    </div>
+
+    <!-- Agents Panel -->
+    <div class="section-header">
+      <div class="section-title">Named Agents On Duty</div>
+      <div id="cycle-status" style="font-size: 12px; color: var(--text-muted); font-weight: 500;">Status: Ready</div>
+    </div>
+
+    <div class="agents-grid" id="agents-container">
+      <!-- 8 Agent Cards populated by JS / template -->
+    </div>
+
+    <!-- Latest Verdicts Feed with Filter Toolbar -->
+    <div class="section-header">
+      <div>
+        <span class="section-title">Stock Analysis Verdicts</span>
+        <span id="verdicts-count" style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">0 stocks evaluated</span>
+      </div>
+      <div class="table-toolbar">
+        <button class="filter-btn active" id="filter-all" onclick="setFilter('ALL')">All</button>
+        <button class="filter-btn" id="filter-buy" onclick="setFilter('BUY')">🟢 BUY Signals</button>
+        <button class="filter-btn" id="filter-watch" onclick="setFilter('WATCH')">🟡 Watch</button>
+        <button class="filter-btn" id="filter-avoid" onclick="setFilter('AVOID')">🔴 Avoid</button>
+        <input type="text" id="search-box" class="search-input" placeholder="🔍 Search symbol/name..." oninput="onSearchChange()" />
+      </div>
+    </div>
+
+    <div class="verdicts-card">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Stock</th>
+              <th>Verdict</th>
+              <th>Confidence</th>
+              <th>Live Price</th>
+              <th>Day Change</th>
+              <th>Rationale & Catalyst</th>
+              <th>Winner</th>
+            </tr>
+          </thead>
+          <tbody id="verdicts-tbody">
+            <tr>
+              <td colspan="7" class="empty-verdicts">
+                No cycle has been run yet. Click <strong>Start agents</strong> to analyze all stocks in the universe.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div id="footer-stocks">Built from 0 real stocks · data pulled <span id="footer-timestamp">—</span> IST</div>
+      <div>engine: <span id="footer-engine" class="engine-pill">{{ engine_badge }}</span></div>
+    </footer>
+  </div>
+
+  <script>
+    const AGENT_DEFS = [
+      { id: "scout", name: "Scout", icon: "🔭", role: "screens the stock universe for movers", s1: "Scanned", s2: "Shortlisted" },
+      { id: "technician", name: "Technician", icon: "📈", role: "reads price action, RVOL & trend", s1: "Analyzed", s2: "Avg RVOL" },
+      { id: "fundamentalist", name: "Fundamentalist", icon: "⚖️", role: "weighs valuation & analyst targets", s1: "Covered", s2: "Avg upside" },
+      { id: "newsdesk", name: "Newsdesk", icon: "📰", role: "pulls live news & scores sentiment", s1: "Headlines", s2: "Net tone" },
+      { id: "bull", name: "Bull", icon: "🐂", role: "argues the case to buy", s1: "Cases", s2: "Avg score" },
+      { id: "bear", name: "Bear", icon: "🐻", role: "argues the case against", s1: "Cases", s2: "Avg score" },
+      { id: "judge", name: "Judge", icon: "👨‍⚖️", role: "weighs the debate, issues verdict + confidence", s1: "Verdicts", s2: "Buy" },
+      { id: "messenger", name: "Messenger", icon: "📨", role: "sends signals to Telegram", s1: "Sent", s2: "Engine" }
+    ];
+
+    let isRunning = false;
+    let rawVerdicts = [];
+    let currentFilter = "ALL";
+    let searchQuery = "";
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active", "active-buy");
+      });
+      if (filter === "ALL") document.getElementById("filter-all").classList.add("active");
+      if (filter === "BUY") document.getElementById("filter-buy").classList.add("active-buy");
+      if (filter === "WATCH") document.getElementById("filter-watch").classList.add("active");
+      if (filter === "AVOID") document.getElementById("filter-avoid").classList.add("active");
+      renderVerdicts(rawVerdicts);
+    }
+
+    function onSearchChange() {
+      searchQuery = document.getElementById("search-box").value.trim().toLowerCase();
+      renderVerdicts(rawVerdicts);
+    }
+
+    function renderAgentCards(agentStates = {}) {
+      const container = document.getElementById("agents-container");
+      container.innerHTML = AGENT_DEFS.map(a => {
+        const state = agentStates[a.id] || { status: "offline", stat1: "0", stat2: "0" };
+        const statusClass = state.status || "offline";
+        return `
+          <div class="agent-card ${statusClass}">
+            <div>
+              <div class="agent-top">
+                <div class="agent-meta">
+                  <div class="agent-icon">${a.icon}</div>
+                  <div class="agent-name">${a.name}</div>
+                </div>
+                <div class="status-pill ${statusClass}">
+                  ${statusClass === 'working' ? '<span class="pulsing-dot"></span>' : ''}
+                  ${statusClass}
+                </div>
+              </div>
+              <div class="agent-role">${a.role}</div>
+            </div>
+            <div>
+              <div class="agent-stats">
+                <div class="agent-stat-item">
+                  <span class="agent-stat-label">${a.s1}</span>
+                  <span class="agent-stat-value">${state.stat1 !== undefined ? state.stat1 : '0'}</span>
+                </div>
+                <div class="agent-stat-item">
+                  <span class="agent-stat-label">${a.s2}</span>
+                  <span class="agent-stat-value">${state.stat2 !== undefined ? state.stat2 : '0'}</span>
+                </div>
+              </div>
+            </div>
+            <div class="agent-progress-bar"></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderVerdicts(verdicts = []) {
+      rawVerdicts = verdicts;
+      const tbody = document.getElementById("verdicts-tbody");
+      const countLabel = document.getElementById("verdicts-count");
+
+      let filtered = verdicts;
+      if (currentFilter !== "ALL") {
+        filtered = filtered.filter(v => v.verdict === currentFilter);
+      }
+      if (searchQuery) {
+        filtered = filtered.filter(v => 
+          (v.symbol && v.symbol.toLowerCase().includes(searchQuery)) ||
+          (v.name && v.name.toLowerCase().includes(searchQuery)) ||
+          (v.cap_segment && v.cap_segment.toLowerCase().includes(searchQuery))
+        );
+      }
+
+      countLabel.innerText = `${filtered.length} of ${verdicts.length} stocks shown`;
+
+      if (!filtered || filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="empty-verdicts">
+              ${isRunning ? 'Scanning and evaluating stocks in real-time...' : (verdicts.length > 0 ? 'No stocks match the selected filter.' : 'No cycle has been run yet. Click <strong>Start agents</strong> to analyze all stocks.')}
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(v => {
+        const badgeClass = v.verdict === 'BUY' ? 'badge-buy' : (v.verdict === 'AVOID' ? 'badge-avoid' : 'badge-watch');
+        const badgeIcon = v.verdict === 'BUY' ? '🟢' : (v.verdict === 'AVOID' ? '🔴' : '🟡');
+        const changeClass = (v.day_change_pct >= 0) ? 'change-pos' : 'change-neg';
+        const changeSign = (v.day_change_pct >= 0) ? '+' : '';
+
+        return `
+          <tr>
+            <td>
+              <div class="stock-cell">
+                <span class="stock-symbol">${v.symbol}</span>
+                <span class="stock-name">${v.name || ''} · ${v.cap_segment || ''}</span>
+              </div>
+            </td>
+            <td>
+              <span class="badge ${badgeClass}">${badgeIcon} ${v.verdict}</span>
+            </td>
+            <td>
+              <span class="confidence-tag">${v.confidence}/10</span>
+            </td>
+            <td>
+              <span class="price-tag">₹${v.live_price ? Number(v.live_price).toLocaleString('en-IN') : '—'}</span>
+            </td>
+            <td>
+              <span class="${changeClass}">${v.day_change_pct !== null && v.day_change_pct !== undefined ? `${changeSign}${v.day_change_pct}%` : '—'}</span>
+            </td>
+            <td>
+              <div class="why-text">
+                <strong>Why:</strong> ${v.rationale || '—'}
+                <br />
+                <span style="font-size: 11px; color: var(--text-muted);"><strong>Catalyst:</strong> ${v.key_catalyst || '—'}</span>
+              </div>
+            </td>
+            <td>
+              <span style="font-weight: 600; color: ${v.winner === 'Bull' ? 'var(--success)' : (v.winner === 'Bear' ? 'var(--danger)' : 'var(--text-main)')};">
+                ${v.winner || '—'}
+              </span>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    async function pollStatus() {
+      try {
+        const resp = await fetch("/status");
+        if (!resp.ok) return;
+        const data = await resp.json();
+
+        // Update KPIs
+        document.getElementById("kpi-universe").innerText = data.kpi?.universe || 0;
+        document.getElementById("kpi-debate").innerText = data.kpi?.in_debate || 0;
+        document.getElementById("kpi-buys").innerText = data.kpi?.buy_signals || 0;
+        
+        if (data.kpi?.top_pick) {
+          document.getElementById("kpi-top-pick").innerText = data.kpi.top_pick;
+          document.getElementById("kpi-top-conf").innerText = `Confidence: ${data.kpi.top_pick_conf || 0}/10`;
+        } else {
+          document.getElementById("kpi-top-pick").innerText = "—";
+          document.getElementById("kpi-top-conf").innerText = "Highest conviction verdict";
+        }
+
+        // Update Agent Cards
+        renderAgentCards(data.agents || {});
+
+        // Update Verdicts
+        renderVerdicts(data.verdicts || []);
+
+        // Update Cycle state
+        isRunning = data.is_running;
+        const startBtn = document.getElementById("start-btn");
+        const btnText = document.getElementById("btn-text");
+        const statusHeader = document.getElementById("cycle-status");
+
+        if (isRunning) {
+          startBtn.disabled = true;
+          btnText.innerText = "Agents running...";
+          statusHeader.innerText = `Status: Pipeline active (${data.active_step || 'working'})`;
+        } else {
+          startBtn.disabled = false;
+          btnText.innerText = "Start agents";
+          statusHeader.innerText = data.completed_at ? `Status: Completed at ${data.completed_at}` : "Status: Ready";
+        }
+
+        // Update Footer
+        if (data.footer) {
+          document.getElementById("footer-stocks").innerText = `Built from ${data.footer.stocks_count || 0} real stocks · data pulled ${data.footer.timestamp || '—'} IST`;
+          document.getElementById("footer-engine").innerText = data.footer.engine || "deterministic";
+        }
+      } catch (err) {
+        console.error("Polling error:", err);
+      }
+    }
+
+    async function startRun() {
+      const mode = document.getElementById("mode-select").value;
+      const startBtn = document.getElementById("start-btn");
+      startBtn.disabled = true;
+      document.getElementById("btn-text").innerText = "Starting...";
+
+      try {
+        const resp = await fetch("/start", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mode })
+        });
+        const res = await resp.json();
+        if (res.status === "started") {
+          isRunning = true;
+          pollStatus();
+        } else if (res.error) {
+          alert(res.error);
+          startBtn.disabled = false;
+          document.getElementById("btn-text").innerText = "Start agents";
+        }
+      } catch (e) {
+        console.error("Failed to start run:", e);
+        startBtn.disabled = false;
+        document.getElementById("btn-text").innerText = "Start agents";
+      }
+    }
+
+    // Initial render and fast 500ms polling
+    renderAgentCards();
+    pollStatus();
+    setInterval(pollStatus, 500);
+  </script>
+</body>
+</html>

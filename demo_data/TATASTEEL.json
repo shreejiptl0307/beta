@@ -1,0 +1,62 @@
+{
+  "symbol": "TATASTEEL.NS",
+  "name": "Tata Steel Ltd",
+  "cap_segment": "Large Cap",
+  "sector": "Basic Materials",
+  "price": {
+    "live": 142.30,
+    "day_open": 145.00,
+    "day_high": 145.80,
+    "day_low": 141.90,
+    "prev_close": 146.10,
+    "day_change_pct": -2.60,
+    "volume": 32000000
+  },
+  "range_52w": {
+    "high": 184.60,
+    "low": 114.20,
+    "pct_from_high": -22.91,
+    "position_pct": 39.91
+  },
+  "technicals": {
+    "rvol": 0.82,
+    "price_vs_sma_pct": -4.60,
+    "window_return_pct": -6.80,
+    "swing_high": 158.00,
+    "swing_low": 140.50,
+    "day_range_position_pct": 10.26,
+    "trend": "down"
+  },
+  "analyst": {
+    "consensus": "Hold",
+    "num_analysts": 28,
+    "buy_pct": 46.4,
+    "hold_pct": 28.6,
+    "sell_pct": 25.0,
+    "target_mean": 145.00,
+    "target_low": 115.00,
+    "target_high": 180.00,
+    "upside_pct": 1.90
+  },
+  "news": {
+    "total": 4,
+    "positive": 0,
+    "negative": 3,
+    "neutral": 1,
+    "recent": [
+      {
+        "title": "Global steel spread compression dampens export margins in European business",
+        "publisher": "Reuters India",
+        "date": "2026-09-20",
+        "sentiment": "negative"
+      },
+      {
+        "title": "Domestic raw material price spikes add near-term margin pressure",
+        "publisher": "Economic Times",
+        "date": "2026-09-17",
+        "sentiment": "negative"
+      }
+    ]
+  },
+  "data_gaps": []
+}

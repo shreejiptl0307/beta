@@ -1,0 +1,62 @@
+{
+  "symbol": "SUZLON.NS",
+  "name": "Suzlon Energy Ltd",
+  "cap_segment": "Small Cap",
+  "sector": "Renewable Industrials",
+  "price": {
+    "live": 78.45,
+    "day_open": 74.20,
+    "day_high": 79.10,
+    "day_low": 73.90,
+    "prev_close": 73.50,
+    "day_change_pct": 6.73,
+    "volume": 68000000
+  },
+  "range_52w": {
+    "high": 84.40,
+    "low": 24.20,
+    "pct_from_high": -7.05,
+    "position_pct": 90.12
+  },
+  "technicals": {
+    "rvol": 4.15,
+    "price_vs_sma_pct": 11.20,
+    "window_return_pct": 22.40,
+    "swing_high": 79.10,
+    "swing_low": 63.50,
+    "day_range_position_pct": 87.50,
+    "trend": "up"
+  },
+  "analyst": {
+    "consensus": "Strong Buy",
+    "num_analysts": 9,
+    "buy_pct": 88.9,
+    "hold_pct": 11.1,
+    "sell_pct": 0.0,
+    "target_mean": 94.00,
+    "target_low": 80.00,
+    "target_high": 105.00,
+    "upside_pct": 19.82
+  },
+  "news": {
+    "total": 6,
+    "positive": 5,
+    "negative": 0,
+    "neutral": 1,
+    "recent": [
+      {
+        "title": "Suzlon bags marquee 400 MW hybrid wind-solar order from leading IPP",
+        "publisher": "Economic Times",
+        "date": "2026-09-21",
+        "sentiment": "positive"
+      },
+      {
+        "title": "Record order book visibility puts company on strong multi-year growth trajectory",
+        "publisher": "NDTV Profit",
+        "date": "2026-09-19",
+        "sentiment": "positive"
+      }
+    ]
+  },
+  "data_gaps": []
+}

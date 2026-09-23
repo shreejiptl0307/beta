@@ -1,0 +1,62 @@
+{
+  "symbol": "TRENT.NS",
+  "name": "Trent Ltd",
+  "cap_segment": "Mid/Large Cap",
+  "sector": "Consumer Cyclical",
+  "price": {
+    "live": 7320.50,
+    "day_open": 7110.00,
+    "day_high": 7365.00,
+    "day_low": 7095.00,
+    "prev_close": 7080.00,
+    "day_change_pct": 3.39,
+    "volume": 2150000
+  },
+  "range_52w": {
+    "high": 7450.00,
+    "low": 2020.00,
+    "pct_from_high": -1.74,
+    "position_pct": 97.61
+  },
+  "technicals": {
+    "rvol": 3.42,
+    "price_vs_sma_pct": 6.85,
+    "window_return_pct": 14.20,
+    "swing_high": 7365.00,
+    "swing_low": 6800.00,
+    "day_range_position_pct": 83.52,
+    "trend": "up"
+  },
+  "analyst": {
+    "consensus": "Strong Buy",
+    "num_analysts": 22,
+    "buy_pct": 86.4,
+    "hold_pct": 9.1,
+    "sell_pct": 4.5,
+    "target_mean": 8200.00,
+    "target_low": 6900.00,
+    "target_high": 8800.00,
+    "upside_pct": 12.01
+  },
+  "news": {
+    "total": 5,
+    "positive": 4,
+    "negative": 0,
+    "neutral": 1,
+    "recent": [
+      {
+        "title": "Zudio rapid store expansion fuels another quarterly revenue surge",
+        "publisher": "Economic Times",
+        "date": "2026-09-20",
+        "sentiment": "positive"
+      },
+      {
+        "title": "Trent reports industry-beating same-store sales growth in retail format",
+        "publisher": "Mint",
+        "date": "2026-09-18",
+        "sentiment": "positive"
+      }
+    ]
+  },
+  "data_gaps": []
+}

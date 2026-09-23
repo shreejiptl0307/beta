@@ -1,0 +1,62 @@
+{
+  "symbol": "ZOMATO.NS",
+  "name": "Zomato Ltd",
+  "cap_segment": "Mid Cap",
+  "sector": "Consumer Services",
+  "price": {
+    "live": 268.40,
+    "day_open": 258.00,
+    "day_high": 271.50,
+    "day_low": 257.20,
+    "prev_close": 256.10,
+    "day_change_pct": 4.80,
+    "volume": 48500000
+  },
+  "range_52w": {
+    "high": 280.00,
+    "low": 98.50,
+    "pct_from_high": -4.14,
+    "position_pct": 93.61
+  },
+  "technicals": {
+    "rvol": 3.80,
+    "price_vs_sma_pct": 8.40,
+    "window_return_pct": 18.10,
+    "swing_high": 271.50,
+    "swing_low": 235.00,
+    "day_range_position_pct": 78.32,
+    "trend": "up"
+  },
+  "analyst": {
+    "consensus": "Strong Buy",
+    "num_analysts": 26,
+    "buy_pct": 92.3,
+    "hold_pct": 7.7,
+    "sell_pct": 0.0,
+    "target_mean": 310.00,
+    "target_low": 260.00,
+    "target_high": 350.00,
+    "upside_pct": 15.50
+  },
+  "news": {
+    "total": 5,
+    "positive": 4,
+    "negative": 0,
+    "neutral": 1,
+    "recent": [
+      {
+        "title": "Blinkit quick-commerce unit achieves milestone profitability across core metros",
+        "publisher": "Moneycontrol",
+        "date": "2026-09-21",
+        "sentiment": "positive"
+      },
+      {
+        "title": "Dining-out business expansion boosts take-rate guidance",
+        "publisher": "Livemint",
+        "date": "2026-09-18",
+        "sentiment": "positive"
+      }
+    ]
+  },
+  "data_gaps": []
+}

@@ -1,0 +1,56 @@
+{
+  "symbol": "HDFCBANK.NS",
+  "name": "HDFC Bank Ltd",
+  "cap_segment": "Large Cap",
+  "sector": "Financial Services",
+  "price": {
+    "live": 1662.40,
+    "day_open": 1650.00,
+    "day_high": 1668.00,
+    "day_low": 1648.00,
+    "prev_close": 1652.10,
+    "day_change_pct": 0.62,
+    "volume": 9500000
+  },
+  "range_52w": {
+    "high": 1794.00,
+    "low": 1363.55,
+    "pct_from_high": -7.34,
+    "position_pct": 69.43
+  },
+  "technicals": {
+    "rvol": 0.95,
+    "price_vs_sma_pct": 1.45,
+    "window_return_pct": 3.10,
+    "swing_high": 1680.00,
+    "swing_low": 1610.00,
+    "day_range_position_pct": 72.00,
+    "trend": "sideways"
+  },
+  "analyst": {
+    "consensus": "Buy",
+    "num_analysts": 41,
+    "buy_pct": 82.9,
+    "hold_pct": 14.6,
+    "sell_pct": 2.5,
+    "target_mean": 1890.00,
+    "target_low": 1600.00,
+    "target_high": 2100.00,
+    "upside_pct": 13.69
+  },
+  "news": {
+    "total": 3,
+    "positive": 1,
+    "negative": 0,
+    "neutral": 2,
+    "recent": [
+      {
+        "title": "HDFC Bank advances deposit accretion pace following branch integration",
+        "publisher": "Financial Express",
+        "date": "2026-09-19",
+        "sentiment": "neutral"
+      }
+    ]
+  },
+  "data_gaps": []
+}
