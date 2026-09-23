@@ -1,0 +1,61 @@
+{
+  "sample_run": {
+    "id": 1,
+    "timestamp": "2026-09-23 19:40:00 IST",
+    "mode": "live",
+    "engine": "claude_code",
+    "scanned_count": 68,
+    "shortlisted_count": 68,
+    "buys_count": 8
+  },
+  "sample_verdicts": [
+    {
+      "id": 101,
+      "run_id": 1,
+      "symbol": "TRENT.NS",
+      "name": "Trent Ltd",
+      "cap_segment": "Mid Cap",
+      "verdict": "BUY",
+      "confidence": 9,
+      "winner": "Bull",
+      "live_price": 7320.50,
+      "day_change_pct": 3.39,
+      "rationale": "Strong bull leadership (Net +68.0). Supported by exceptional volume surge (3.42x RVOL).",
+      "key_catalyst": "Near 52-week high breakout zone (97.61%)",
+      "telegram_sent": 1,
+      "created_at": "2026-09-23 19:40:15 IST"
+    },
+    {
+      "id": 102,
+      "run_id": 1,
+      "symbol": "SUZLON.NS",
+      "name": "Suzlon Energy Ltd",
+      "cap_segment": "Small Cap",
+      "verdict": "BUY",
+      "confidence": 9,
+      "winner": "Bull",
+      "live_price": 78.45,
+      "day_change_pct": 6.73,
+      "rationale": "Strong bull leadership (Net +68.0). Supported by exceptional volume surge (4.15x RVOL).",
+      "key_catalyst": "Record order book visibility and hybrid order wins",
+      "telegram_sent": 1,
+      "created_at": "2026-09-23 19:40:18 IST"
+    },
+    {
+      "id": 103,
+      "run_id": 1,
+      "symbol": "TATASTEEL.NS",
+      "name": "Tata Steel Ltd",
+      "cap_segment": "Large Cap",
+      "verdict": "AVOID",
+      "confidence": 1,
+      "winner": "Bear",
+      "live_price": 142.30,
+      "day_change_pct": -2.60,
+      "rationale": "Bear dominance (Net -68.0). Weak momentum and trading below 20-day SMA.",
+      "key_catalyst": "Global steel spread compression dampens export margins",
+      "telegram_sent": 0,
+      "created_at": "2026-09-23 19:40:22 IST"
+    }
+  ]
+}
